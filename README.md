@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# javascript-calculator
+
+This project was made as a part of the [Front End Development Libraries certification](https://www.freecodecamp.org/learn/front-end-development-libraries/) on [freeCodeCamp](https://www.freecodecamp.org/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
