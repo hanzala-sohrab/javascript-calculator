@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const [display, setDisplay] = useState("0");
+  const [isNew, setIsNew] = useState(true);
   const [expression, setExpression] = useState("");
 
   const operators = ["+", "-", "*", "/"];
@@ -11,10 +12,31 @@ function App() {
     event.preventDefault();
     setDisplay("0");
     setExpression("");
+    setIsNew(true);
   }
 
   const onButtonClick = value => {
-
+    if (!isNaN(value)) {
+      setExpression(prevExpression => {
+        if (isNew) {
+          if (value !== 0) {
+            setIsNew(false);
+            const lastChar = prevExpression[prevExpression.length - 1];
+            if (lastChar !== '0') {
+              prevExpression = prevExpression + '' + value;
+            } else {
+              prevExpression = value;
+            }
+          } else {
+            prevExpression = '0';
+          }
+        } else {
+          prevExpression = prevExpression + '' + value;
+        }
+        return prevExpression;
+      });
+      setDisplay(value);
+    }
   }
 
   return (
