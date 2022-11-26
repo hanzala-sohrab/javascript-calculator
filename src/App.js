@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [display, setDisplay] = useState("0");
   const [isNew, setIsNew] = useState(true);
+  const [decimal, setDecimal] = useState(true);
   const [expression, setExpression] = useState("");
 
   const operators = ["+", "-", "*", "/"];
@@ -13,6 +14,7 @@ function App() {
     setDisplay("0");
     setExpression("");
     setIsNew(true);
+    setDecimal(true);
   }
 
   const onButtonClick = value => {
@@ -35,8 +37,18 @@ function App() {
         }
         return prevExpression;
       });
-      setDisplay(value);
+    } else if (value === '.' && decimal) {
+      setDecimal(false);
+      setExpression(prevExpression => {
+        if (isNew) {
+          prevExpression = '0';
+          setIsNew(false);
+        }
+        prevExpression = prevExpression + '.';
+        return prevExpression;
+      });
     }
+    setDisplay(value);
   }
 
   return (
